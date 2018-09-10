@@ -1,11 +1,7 @@
 package com.sgic.hrm.entity;
 
-import java.io.Serializable;
-
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 /**
  * @author Anushanth
@@ -13,32 +9,18 @@ import javax.persistence.ManyToOne;
  */
 
 @Entity
-public class remainingDays implements Serializable {
+public class remainingDays {
 
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "userId")
-	private User user;
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "typeId")
-	private LeaveType type;
+	@EmbeddedId
+	private RemainingDaysId id;
 	private Double remainDays;
 
-	public User getUser() {
-		return user;
+	public RemainingDaysId getId() {
+		return id;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public LeaveType getType() {
-		return type;
-	}
-
-	public void setType(LeaveType type) {
-		this.type = type;
+	public void setId(RemainingDaysId id) {
+		this.id = id;
 	}
 
 	public Double getRemainDays() {
