@@ -38,4 +38,5 @@ public class LeaveType {
 	public void setAllocatedDays(Integer allocatedDays) {
 		this.allocatedDays = allocatedDays;
 	}
+
 }

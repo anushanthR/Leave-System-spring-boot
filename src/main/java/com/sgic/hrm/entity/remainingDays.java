@@ -9,11 +9,11 @@ import javax.persistence.Entity;
  */
 
 @Entity
-public class remainingDays {
+public class RemainingDays {
 
 	@EmbeddedId
 	private RemainingDaysId id;
-	private Double remainDays;
+	private float remainDays;
 
 	public RemainingDaysId getId() {
 		return id;
@@ -23,11 +23,11 @@ public class remainingDays {
 		this.id = id;
 	}
 
-	public Double getRemainDays() {
+	public float getRemainDays() {
 		return remainDays;
 	}
 
-	public void setRemainDays(Double remainDays) {
+	public void setRemainDays(float remainDays) {
 		this.remainDays = remainDays;
 	}
 
