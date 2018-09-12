@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.sgic.hrm.entity.Role;
 import com.sgic.hrm.entity.RoleRepository;
@@ -27,7 +26,7 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public boolean updateRole(@RequestBody Role role) {
+	public boolean updateRole(Role role) {
 		boolean success = false;
 		Role rolefromDB= getRole(role.getId());
 		if(null!=rolefromDB) {
