@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 
 @SuppressWarnings("serial")
 @Embeddable
-public class RemainingDaysId implements Serializable {
+public class RemainingLeaveId implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "userId")

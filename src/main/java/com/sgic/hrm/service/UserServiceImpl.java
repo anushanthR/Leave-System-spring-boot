@@ -1,13 +1,16 @@
 package com.sgic.hrm.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sgic.hrm.entity.User;
 import com.sgic.hrm.entity.UserRepository;
 
+
+/**
+ * @author Anushanth
+ *
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -28,8 +31,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean updateUser(User user) {
 		boolean success = false;
-		User userfromDB = viewById(user.getId());
-		if (null != userfromDB) {
+		if (null != userRepo.getOne(user.getId())) {
 			userRepo.save(user);
 			success = true;
 		}
@@ -37,23 +39,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User viewById(Integer id) {
-		Optional<User> opt = userRepo.findById(id);
-		User user = null;
-		if (opt.isPresent()) {
-			user = opt.get();
-		}
-		return user;
-	}
-
-	@Override
 	public boolean dropUser(Integer id) {
 		Boolean success = false;
-		if (null != viewById(id)) {
+		if (null != userRepo.getOne(id)) {
 			userRepo.deleteById(id);
 			success = true;
 		}
 		return success;
+	}
+
+	@Override
+	public User viewUserById(Integer id) {
+		return userRepo.getOne(id);
 	}
 
 }

@@ -1,9 +1,4 @@
-/**
- * 
- */
 package com.sgic.hrm.service;
-
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,9 +29,8 @@ public class LeaveTypeServiceImpl implements LeaveTypeService {
 
 	@Override
 	public boolean updateType(LeaveType type) {
-		boolean success = false;
-		LeaveType rolefromDB = viewTypeById(type.getId());
-		if (null != rolefromDB) {
+		boolean success = false;		
+		if (null != viewTypeById(type.getId())) {
 			typeRepo.save(type);
 			success = true;
 		}
@@ -55,12 +49,8 @@ public class LeaveTypeServiceImpl implements LeaveTypeService {
 
 	@Override
 	public LeaveType viewTypeById(Integer id) {
-		Optional<LeaveType> opt = typeRepo.findById(id);
-		LeaveType type = null;
-		if (opt.isPresent()) {
-			type = opt.get();
-		}
-		return type;
+		return typeRepo.getOne(id);
+		
 	}
 
 }

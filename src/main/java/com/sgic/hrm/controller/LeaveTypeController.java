@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.sgic.hrm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,20 +11,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.sgic.hrm.entity.User;
-import com.sgic.hrm.service.UserService;
+import com.sgic.hrm.entity.LeaveType;
+import com.sgic.hrm.service.LeaveTypeService;
 
-@RestController
-public class UserController {
-
+/**
+ * @author Anushanth
+ *
+ */
+public class LeaveTypeController {
+	
 	@Autowired
-	UserService userService;
-
-	@PostMapping("/user")
-	public ResponseEntity<String> addUser(@RequestBody User user) {
-		boolean success = userService.addUser(user);
+	LeaveTypeService typeService;
+	
+	@PostMapping("/type")
+	public ResponseEntity<String> addUser(@RequestBody LeaveType type) {
+		boolean success = typeService.addType(type);
 		String message = "Add action failed";
 		ResponseEntity<String> status = new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
 		if (success) {
@@ -30,15 +35,15 @@ public class UserController {
 		}
 		return status;
 	}
-
-	@GetMapping("/user")
-	public ResponseEntity<Iterable<User>> viewAllUser() {
-		return new ResponseEntity<>(userService.viewAllUser(), HttpStatus.OK);
+	
+	@GetMapping("/type")
+	public ResponseEntity<Iterable<LeaveType>> viewAllUser() {
+		return new ResponseEntity<>(typeService.viewAllType(), HttpStatus.OK);
 	}
-
-	@PutMapping("/user")
-	public ResponseEntity<String> updateUser(@RequestBody User user) {
-		boolean success = userService.updateUser(user);
+	
+	@PutMapping("/type")
+	public ResponseEntity<String> updateRole(@RequestBody LeaveType type) {
+		boolean success = typeService.updateType(type);
 		String message = "Update Failed";
 		ResponseEntity<String> status = new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
 		if (success) {
@@ -47,10 +52,10 @@ public class UserController {
 		}
 		return status;
 	}
-
-	@DeleteMapping("/user")
+	
+	@DeleteMapping("/type")
 	public ResponseEntity<String> dropUser(@RequestBody Integer id) {
-		boolean success = userService.dropUser(id);
+		boolean success = typeService.dropType(id);
 		String message = "Delete action failed";
 		ResponseEntity<String> status = new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
 		if (success) {

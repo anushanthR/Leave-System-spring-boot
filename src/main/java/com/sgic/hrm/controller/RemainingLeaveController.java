@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.sgic.hrm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,18 +13,23 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sgic.hrm.entity.User;
-import com.sgic.hrm.service.UserService;
+import com.sgic.hrm.entity.RemainingLeave;
+import com.sgic.hrm.entity.RemainingLeaveId;
+import com.sgic.hrm.service.RemainingLeaveService;
 
+/**
+ * @author Anushanth
+ *
+ */
 @RestController
-public class UserController {
+public class RemainingLeaveController {
 
 	@Autowired
-	UserService userService;
-
-	@PostMapping("/user")
-	public ResponseEntity<String> addUser(@RequestBody User user) {
-		boolean success = userService.addUser(user);
+	RemainingLeaveService remainingLeaveService;
+	
+	@PostMapping("/remain")
+	public ResponseEntity<String> add(@RequestBody RemainingLeave remainingLeave) {
+		boolean success = remainingLeaveService.add(remainingLeave);
 		String message = "Add action failed";
 		ResponseEntity<String> status = new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
 		if (success) {
@@ -31,14 +39,14 @@ public class UserController {
 		return status;
 	}
 
-	@GetMapping("/user")
-	public ResponseEntity<Iterable<User>> viewAllUser() {
-		return new ResponseEntity<>(userService.viewAllUser(), HttpStatus.OK);
+	@GetMapping("/remain")
+	public ResponseEntity<Iterable<RemainingLeave>> viewAll() {
+		return new ResponseEntity<>(remainingLeaveService.viewAll(), HttpStatus.OK);
 	}
 
-	@PutMapping("/user")
-	public ResponseEntity<String> updateUser(@RequestBody User user) {
-		boolean success = userService.updateUser(user);
+	@PutMapping("/remain")
+	public ResponseEntity<String> update(@RequestBody RemainingLeave remainingLeave) {
+		boolean success = remainingLeaveService.update(remainingLeave);
 		String message = "Update Failed";
 		ResponseEntity<String> status = new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
 		if (success) {
@@ -48,9 +56,9 @@ public class UserController {
 		return status;
 	}
 
-	@DeleteMapping("/user")
-	public ResponseEntity<String> dropUser(@RequestBody Integer id) {
-		boolean success = userService.dropUser(id);
+	@DeleteMapping("/remain")
+	public ResponseEntity<String> drop(@RequestBody RemainingLeaveId id) {
+		boolean success = remainingLeaveService.drop(id);
 		String message = "Delete action failed";
 		ResponseEntity<String> status = new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
 		if (success) {

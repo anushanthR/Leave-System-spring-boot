@@ -3,12 +3,12 @@
  */
 package com.sgic.hrm.entity;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @author Anushanth
  *
  */
-public interface RoleRepository extends CrudRepository<Role, Integer>{
+public interface RoleRepository extends JpaRepository<Role, Integer>{
 
 }

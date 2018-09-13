@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sgic.hrm.entity.User;
-import com.sgic.hrm.service.UserService;
+import com.sgic.hrm.entity.LeaveRequest;
+import com.sgic.hrm.service.LeaveRequestService;
 
 @RestController
-public class UserController {
+public class LeaveRequstController {
 
 	@Autowired
-	UserService userService;
-
-	@PostMapping("/user")
-	public ResponseEntity<String> addUser(@RequestBody User user) {
-		boolean success = userService.addUser(user);
+	LeaveRequestService requestService;
+	
+	@PostMapping("/request")
+	public ResponseEntity<String> addUser(@RequestBody LeaveRequest request) {
+		boolean success = requestService.addRequest(request);
 		String message = "Add action failed";
 		ResponseEntity<String> status = new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
 		if (success) {
@@ -31,14 +31,14 @@ public class UserController {
 		return status;
 	}
 
-	@GetMapping("/user")
-	public ResponseEntity<Iterable<User>> viewAllUser() {
-		return new ResponseEntity<>(userService.viewAllUser(), HttpStatus.OK);
+	@GetMapping("/request")
+	public ResponseEntity<Iterable<LeaveRequest>> viewAllRequest() {
+		return new ResponseEntity<>(requestService.viewAllRequest(), HttpStatus.OK);
 	}
 
-	@PutMapping("/user")
-	public ResponseEntity<String> updateUser(@RequestBody User user) {
-		boolean success = userService.updateUser(user);
+	@PutMapping("/request")
+	public ResponseEntity<String> updateRequest(@RequestBody LeaveRequest request) {
+		boolean success = requestService.updateRequest(request);
 		String message = "Update Failed";
 		ResponseEntity<String> status = new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
 		if (success) {
@@ -48,9 +48,9 @@ public class UserController {
 		return status;
 	}
 
-	@DeleteMapping("/user")
-	public ResponseEntity<String> dropUser(@RequestBody Integer id) {
-		boolean success = userService.dropUser(id);
+	@DeleteMapping("/request")
+	public ResponseEntity<String> dropRequest(@RequestBody Integer id) {
+		boolean success = requestService.dropRequest(id);
 		String message = "Delete action failed";
 		ResponseEntity<String> status = new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
 		if (success) {

@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Anushanth
  *
  */
-public interface UserRepository extends JpaRepository<User, Integer>{
+public interface RemainingLeaveRepository extends JpaRepository<RemainingLeave, RemainingLeaveId>{
 
 }

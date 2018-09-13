@@ -1,11 +1,11 @@
 package com.sgic.hrm.entity;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @author Anushanth
  *
  */
-public interface LeaveStatusRepository extends CrudRepository<LeaveStatus, Integer> {
+public interface LeaveStatusRepository extends JpaRepository<LeaveStatus, Integer> {
 
 }

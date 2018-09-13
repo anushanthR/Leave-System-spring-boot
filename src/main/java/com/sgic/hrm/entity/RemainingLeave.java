@@ -9,17 +9,17 @@ import javax.persistence.Entity;
  */
 
 @Entity
-public class RemainingDays {
+public class RemainingLeave {
 
 	@EmbeddedId
-	private RemainingDaysId id;
+	private RemainingLeaveId id;
 	private float remainDays;
 
-	public RemainingDaysId getId() {
+	public RemainingLeaveId getId() {
 		return id;
 	}
 
-	public void setId(RemainingDaysId id) {
+	public void setId(RemainingLeaveId id) {
 		this.id = id;
 	}
 
